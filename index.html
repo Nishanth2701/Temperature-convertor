@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Temperature Converter</h1>
+
+            <label for="temperature">Enter Temperature:</label>
+            <input type="number" id="temperature" placeholder="Enter temperature" required>
+            
+            <select id="unit">
+                <option value="celsius">Celsius (°C)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+                <option value="kelvin">Kelvin (K)</option>
+            </select>
+            
+            <button id="convertButton">Convert</button>
+            
+            <p id="result"></p>
+        </div>
+        <footer>
+            Copyright &copy; AstroSnipz
+        </footer>
+
+    </div>
+
+
+    <script>
+        // Function to perform the temperature conversion
+        function convertTemperature() {
+            const temperatureInput = parseFloat(document.getElementById("temperature").value);
+            const selectedUnit = document.getElementById("unit").value;
+            let convertedTemperature = 0;
+            let convertedUnit = "";
+
+            if (selectedUnit === "celsius") {
+                // Convert to Fahrenheit
+                convertedTemperature = (temperatureInput * 9/5) + 32;
+                convertedUnit = "°F";
+            } else if (selectedUnit === "fahrenheit") {
+                // Convert to Celsius
+                convertedTemperature = (temperatureInput - 32) * 5/9;
+                convertedUnit = "°C";
+            } else if (selectedUnit === "kelvin") {
+                // Convert to Kelvin
+                convertedTemperature = temperatureInput + 273.15;
+                convertedUnit = "K";
+            }
+
+            // Display the converted temperature
+            document.getElementById("result").textContent = `Converted Temperature: ${convertedTemperature.toFixed(2)} ${convertedUnit}`;
+        }
+
+        // Add an event listener to the "Convert" button
+        document.getElementById("convertButton").addEventListener("click", convertTemperature);
+    </script>
+</body>
+</html>
